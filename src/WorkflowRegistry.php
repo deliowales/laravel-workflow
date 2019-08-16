@@ -1,8 +1,8 @@
 <?php
 
-namespace Brexis\LaravelWorkflow;
+namespace Delio\LaravelWorkflow;
 
-use Brexis\LaravelWorkflow\Events\WorkflowSubscriber;
+use Delio\LaravelWorkflow\Events\WorkflowSubscriber;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Workflow\Definition;
 use Symfony\Component\Workflow\DefinitionBuilder;
