@@ -9,24 +9,6 @@ use Illuminate\Support\ServiceProvider;
  */
 class WorkflowServiceProvider extends ServiceProvider
 {
-    protected $commands = [
-        'Delio\LaravelWorkflow\Commands\WorkflowDumpCommand',
-    ];
-
-    /**
-    * Bootstrap the application services...
-    *
-    * @return void
-    */
-    public function boot()
-    {
-        $configPath = $this->configPath();
-
-        $this->publishes([
-            $configPath => config_path('workflow.php')
-        ], 'config');
-    }
-
     /**
     * Register the application services.
     *
@@ -34,23 +16,11 @@ class WorkflowServiceProvider extends ServiceProvider
     */
     public function register()
     {
-        $this->mergeConfigFrom(
-            $this->configPath(),
-            'workflow'
-        );
-
-        $this->commands($this->commands);
-
         $this->app->singleton(
             'workflow', function ($app) {
                 return new WorkflowRegistry($app['config']->get('workflow'));
             }
         );
-    }
-
-    protected function configPath()
-    {
-        return __DIR__ . '/../config/workflow.php';
     }
 
     /**
