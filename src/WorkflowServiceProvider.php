@@ -18,7 +18,7 @@ class WorkflowServiceProvider extends ServiceProvider
     {
         $this->app->singleton(
             'workflow', function ($app) {
-                return new WorkflowRegistry(config('workflow'));
+                return new WorkflowRegistry($app['config']->get('workflow'));
             }
         );
     }
