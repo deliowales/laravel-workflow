@@ -1,10 +1,10 @@
-# Laravel workflow [![Build Status](https://travis-ci.org/brexis/laravel-workflow.svg?branch=1.1.2)](https://travis-ci.org/brexis/laravel-workflow)
+# Laravel workflow [![Build Status](https://travis-ci.org/delio/laravel-workflow.svg?branch=1.1.2)](https://travis-ci.org/delio/laravel-workflow)
 
 Use the Symfony Workflow component in Laravel
 
 ### Installation
 
-    composer require brexis/laravel-workflow
+    composer require delio/laravel-workflow
 
 #### For laravel <= 5.4
 
@@ -15,7 +15,7 @@ Add a ServiceProvider to your providers array in `config/app.php`:
 
 'providers' => [
     ...
-    Brexis\LaravelWorkflow\WorkflowServiceProvider::class,
+    Delio\LaravelWorkflow\WorkflowServiceProvider::class,
 
 ]
 ```
@@ -25,7 +25,7 @@ Add the `Workflow` facade to your facades array:
 ```php
 <?php
     ...
-    'Workflow' => Brexis\LaravelWorkflow\Facades\WorkflowFacade::class,
+    'Workflow' => Delio\LaravelWorkflow\Facades\WorkflowFacade::class,
 ```
 
 ### Configuration
@@ -33,7 +33,7 @@ Add the `Workflow` facade to your facades array:
 Publish the config file
 
 ```
-    php artisan vendor:publish --provider="Brexis\LaravelWorkflow\WorkflowServiceProvider"
+    php artisan vendor:publish --provider="Delio\LaravelWorkflow\WorkflowServiceProvider"
 ```
 
 Configure your workflow in `config/workflow.php`
@@ -76,7 +76,7 @@ Use the `WorkflowTrait` inside supported classes
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Brexis\LaravelWorkflow\Traits\WorkflowTrait;
+use Delio\LaravelWorkflow\Traits\WorkflowTrait;
 
 class BlogPost extends Model
 {
@@ -123,11 +123,11 @@ $post->save();
 This package provides a list of events fired during a transition
 
 ```php
-    Brexis\LaravelWorkflow\Events\Guard
-    Brexis\LaravelWorkflow\Events\Leave
-    Brexis\LaravelWorkflow\Events\Transition
-    Brexis\LaravelWorkflow\Events\Enter
-    Brexis\LaravelWorkflow\Events\Entered
+    Delio\LaravelWorkflow\Events\Guard
+    Delio\LaravelWorkflow\Events\Leave
+    Delio\LaravelWorkflow\Events\Transition
+    Delio\LaravelWorkflow\Events\Enter
+    Delio\LaravelWorkflow\Events\Entered
 ```
 
 You can subscribe to an event
@@ -137,7 +137,7 @@ You can subscribe to an event
 
 namespace App\Listeners;
 
-use Brexis\LaravelWorkflow\Events\GuardEvent;
+use Delio\LaravelWorkflow\Events\GuardEvent;
 
 class BlogPostWorkflowSubscriber
 {
@@ -186,27 +186,27 @@ class BlogPostWorkflowSubscriber
     public function subscribe($events)
     {
         $events->listen(
-            'Brexis\LaravelWorkflow\Events\GuardEvent',
+            'Delio\LaravelWorkflow\Events\GuardEvent',
             'App\Listeners\BlogPostWorkflowSubscriber@onGuard'
         );
 
         $events->listen(
-            'Brexis\LaravelWorkflow\Events\LeaveEvent',
+            'Delio\LaravelWorkflow\Events\LeaveEvent',
             'App\Listeners\BlogPostWorkflowSubscriber@onLeave'
         );
 
         $events->listen(
-            'Brexis\LaravelWorkflow\Events\TransitionEvent',
+            'Delio\LaravelWorkflow\Events\TransitionEvent',
             'App\Listeners\BlogPostWorkflowSubscriber@onTransition'
         );
 
         $events->listen(
-            'Brexis\LaravelWorkflow\Events\EnterEvent',
+            'Delio\LaravelWorkflow\Events\EnterEvent',
             'App\Listeners\BlogPostWorkflowSubscriber@onEnter'
         );
 
         $events->listen(
-            'Brexis\LaravelWorkflow\Events\EnteredEvent',
+            'Delio\LaravelWorkflow\Events\EnteredEvent',
             'App\Listeners\BlogPostWorkflowSubscriber@onEntered'
         );
     }
