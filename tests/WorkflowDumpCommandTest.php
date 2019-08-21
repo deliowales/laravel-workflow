@@ -97,7 +97,7 @@ namespace {
 
     class Workflow
     {
-        public static function get($object, $name)
+        public static function get($object, $name = null)
         {
             global $config;
 
